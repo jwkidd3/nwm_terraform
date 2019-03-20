@@ -1,8 +1,0 @@
-
-host01 ansible_host=35.171.85.2
-
-[servers]
-host01
-
-
-
