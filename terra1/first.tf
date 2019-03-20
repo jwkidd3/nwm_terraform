@@ -19,3 +19,9 @@ resource "aws_instance" "instance" {
     }
  }
 }
+resource "null_resource" "ansible"{
+  depends_on = ["aws_instance.instance","data.template_file.dev_hosts"]
+  provisioner "local-exec" {
+  command="ansible-playbook apache.yml"
+ }
+}
