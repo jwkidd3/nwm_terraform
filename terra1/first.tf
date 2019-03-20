@@ -7,7 +7,7 @@ resource "aws_instance" "instance" {
  instance_type = "t2.micro"
  key_name = "bubba"
   tags = {
-    Name = "kiddcorp"
+    Name = "for_ansible"
   }
  provisioner "remote-exec"{
   inline=["sudo apt-get -y install python"]
