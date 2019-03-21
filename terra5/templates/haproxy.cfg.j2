@@ -9,7 +9,7 @@ defaults
     timeout server 50000ms
 
 listen cluster
-    bind {{ ec2_ip_address }}:80
+    bind 0.0.0.0:80
     mode http
     stats enable
     balance roundrobin
