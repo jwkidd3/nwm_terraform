@@ -1,0 +1,4 @@
+- name: web servers
+  import_playbook: apache.yml
+- name: ha proxy
+  import_playbook: haproxy.yml

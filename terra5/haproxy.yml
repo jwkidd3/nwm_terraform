@@ -1,10 +1,35 @@
 ---
 - hosts: tag_web
   gather_facts: true
+  vars_files:
+    - group_vars/all
 
 - hosts: tag_lb
   become: true
+  vars_files:
+    - group_vars/all
+  vars:
+    users:
+      rudolph:
+        name: RR
+        telephone: 5551212
+      sammy:
+        name: Good Ole Sammy
+        telephone: 33344555
+  roles:
+    - lb
   tasks:
+    - name: Ensure group "wheel" exists
+      group:
+        name: wheel
+        state: present
+    - name:  add a bunch of users
+      user:
+        name: "{{ item }}"
+        groups: "wheel"
+      with_items:
+        - userbob
+        - usersally
     - name: Installs haproxy load balancer
       apt:
         pkg: haproxy
@@ -28,9 +53,8 @@
         line: "ENABLED=1"
       notify:
         - restart haproxy
+    - name: dump the users
+      debug:
+        msg: "{{ item.key }} -> {{ item.value.name }} ({{ item.value.telephone }})"
+      with_dict: "{{ users }}"
 
-  handlers:
-    - name: restart haproxy
-      service:
-        name: haproxy
-        state: restarted

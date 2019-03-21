@@ -1,5 +1,7 @@
 - hosts: tag_web
   become: true
+  vars_files:
+    - group_vars/all
   tasks:
     - name:
       apt:
