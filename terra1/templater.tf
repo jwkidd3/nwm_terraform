@@ -4,7 +4,7 @@ data "template_file" "dev_hosts" {
     "aws_instance.instance"
   ]
   vars {
-    api_public = "${aws_instance.instance.public_ip}"
+    api_public = "${aws_instance.instance.*.public_ip}"
     host = "host01"
   }
 }

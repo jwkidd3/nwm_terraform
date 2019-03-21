@@ -1,0 +1,11 @@
+[web]
+web-p-01  ansible_host=10.0.0.1
+
+web-p-02  ansible_host=10.0.0.2
+
+web-p-03  ansible_host=10.0.0.3
+
+
+[production:children]
+web
+

@@ -3,9 +3,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "instance" {
+ count = 2
  ami = "ami-0565af6e282977273"
  instance_type = "t2.micro"
- key_name = "bubba"
+ key_name = "devops"
   tags = {
     Name = "for_ansible"
   }
@@ -14,7 +15,7 @@ resource "aws_instance" "instance" {
   connection{
       type = "ssh"
       user = "ubuntu"
-      private_key = "${file("/home/ubuntu/bubba")}"
+      private_key = "${file("/home/ubuntu/devops")}"
 
     }
  }
