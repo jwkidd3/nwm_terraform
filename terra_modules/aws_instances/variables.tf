@@ -1,5 +1,5 @@
 variable "amis"{
-  type="map"
+  type=map(string)
   default = {
     us-east-1 = "ami-0565af6e282977273"
     sa-east-1 = "ami-05eaf9b21ed6dee3c"
@@ -15,6 +15,6 @@ variable "total_instances" {
 }
 
 variable "cmds"{
-  type    = "list"
+  type    = list(string)
   default = ["touch test.dat"]
 }
